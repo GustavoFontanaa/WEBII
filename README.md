@@ -18,6 +18,6 @@ $ npm start
 ```
 ## ©️ Autores
 
-Gustavo Fontana
-Iasmim Bitencourt
+Gustavo Fontana,
+Iasmim Bitencourt,
 Yasmim Feltrin
