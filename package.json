@@ -1,0 +1,33 @@
+{
+  "name": "trabweb2",
+  "version": "1.0.0",
+  "description": "Trabalho desenvolvido na disciplina de Desenvolvimento WEB II - UNESC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GustavoFontanaa/WEBII.git"
+  },
+  "keywords": [
+    "nodejs",
+    "handlebars",
+    "web"
+  ],
+  "author": "Gustavo Fontana, Iasmim Bitencourt e Yasmim Feltrin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GustavoFontanaa/WEBII/issues"
+  },
+  "homepage": "https://github.com/GustavoFontanaa/WEBII#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.0.4",
+    "express-session": "^1.17.3",
+    "nodemon": "^2.0.22"
+  }
+}
