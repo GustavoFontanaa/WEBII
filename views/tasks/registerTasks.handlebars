@@ -1,0 +1,34 @@
+<div class="auth-container">
+  <h2>Cadastrar Tarefa</h2>
+  <form action="/register/tasks" method="POST">
+    <div class="form-control">
+      <label for="name">Nome:</label>
+      <input
+        type="text"
+        name="name"
+        placeholder="Digite o nome da tarefa"
+        required
+      />
+    </div>
+
+    <div class="form-control">
+      <label for="task">Tarefa:</label>
+      <input type="text" name="task" placeholder="Escrava a tarefa" required />
+    </div>
+
+    <div class="form-control">
+      <label for="time_finish">Tempo para o término da tarefa:</label>
+      <input
+        type="text"
+        name="time_finish"
+        placeholder="Escrava quando tempo a tarefa pode ser realizada"
+        required
+      />
+    </div>
+    <input type="submit" value="Cadastrar" />
+
+    {{#if error}}
+      <div class="alert-danger">{{error}}</div>
+    {{/if}}
+  </form>
+</div>
