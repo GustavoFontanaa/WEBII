@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const users = require('./dados/users.json');
+const fs = require('fs');
 
 const app = express();
 
@@ -41,7 +42,7 @@ app.post('/login', (req, res) => {
   if (user) {
     res.render('tasks/tasks.handlebars');
   } else {
-    res.render('auth/login');
+    res.render('auth/login', { error: 'Credenciais inválidas' });
   }
 });
 
@@ -49,8 +50,15 @@ app.post('/login', (req, res) => {
 app.post('/register', (req, res) => {
   const { email, password } = req.body;
 
+  // const usersJSON = fs.readFileSync('users.json');
+  // const users = JSON.parse(usersJSON);
+
+  users.users.push({ email, password });
+
   // Verificar se o usuário já existe no arquivo users.json
   const userExists = users.users.find((user) => user.email === email);
+
+  fs.writeFileSync('dados/users.json', JSON.stringify(users));
 
   if (userExists) {
     res.render('auth/register');

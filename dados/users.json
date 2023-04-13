@@ -2,6 +2,9 @@
   "users": [
     { "email": "gustavo@gmail.com", "password": "123" },
     { "email": "iasmim@gmail.com", "password": "123" },
-    { "email": "yasmim@gmail.com", "password": "123" }
+    { "email": "yasmim@gmail.com", "password": "123" },
+    { "email": "gustavo7@gmail.com", "password": "123" },
+    { "email": "teste77@gmail.com", "password": "123" },
+    { "email": "gustavo@gmail.com77", "password": "123" }
   ]
 }

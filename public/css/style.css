@@ -122,3 +122,53 @@ footer span {
   font-weight: bold;
   color: #f6982d;
 }
+
+.alert-danger {
+  position: relative;
+  top: 60px;
+  background-color: #f6982d;
+  border-color: #f6982d;
+  width: 70%;
+  margin: auto;
+  text-align: center;
+  padding: 0.7143rem 1.071rem;
+  border-radius: 2px;
+  border: 1px solid transparent;
+  color: #222;
+  font-weight: bold;
+}
+
+/* Pagina de tarefas*/
+.grid-wrap {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  
+  width: 960px;
+  margin: 0 auto;
+}
+
+.card {
+  display: grid;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin: .5em;
+  transition: 0.3s;
+  padding: .5em .5em;
+  grid-template-rows: 100px 250px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4);
+}
+
+.card-head {
+  background-color: #f6982d;
+  border-radius: 5px;
+}
+
+.card-body {
+  text-align: center;
+  margin-bottom: 2em;
+}
