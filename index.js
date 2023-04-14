@@ -1,17 +1,17 @@
-const express = require("express");
-const exphbs = require("express-handlebars");
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const session = require("express-session");
-const users = require("./dados/users.json");
-const tasks = require("./dados/tasks.json");
-const fs = require("fs");
+const express = require('express');
+const exphbs = require('express-handlebars');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const users = require('./dados/users.json');
+const tasks = require('./dados/tasks.json');
+const fs = require('fs');
 
 const app = express();
 
 // Configuração do Handlebars
-app.engine("handlebars", exphbs.engine());
-app.set("view engine", "handlebars");
+app.engine('handlebars', exphbs.engine());
+app.set('view engine', 'handlebars');
 
 // Configuração do Body Parser
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -23,16 +23,16 @@ app.use(cookieParser());
 // Configuração do Express Session
 app.use(
   session({
-    secret: "777@#978terghbdfgpt",
+    secret: '777@#978terghbdfgpt',
     resave: false,
     saveUninitialized: true,
   })
 );
 
 // public path
-app.use(express.static("public"));
+app.use(express.static('public'));
 
-app.post("/login", (req, res) => {
+app.post('/login', (req, res) => {
   const { email, password } = req.body;
 
   // Verificar se o usuário existe no arquivo users.json
@@ -41,14 +41,14 @@ app.post("/login", (req, res) => {
   );
 
   if (user) {
-    res.render("tasks/tasks.handlebars");
+    res.render('tasks/tasks.handlebars');
   } else {
-    res.render("auth/login", { error: "Credenciais inválidas" });
+    res.render('auth/login', { error: 'Credenciais inválidas' });
   }
 });
 
 // Rota para processar o cadastro
-app.post("/register", (req, res) => {
+app.post('/register', (req, res) => {
   const { email, password } = req.body;
 
   users.users.push({ email, password });
@@ -56,58 +56,55 @@ app.post("/register", (req, res) => {
   // Verificar se o usuário já existe no arquivo users.json
   const userExists = users.users.find((user) => user.email === email);
 
-  fs.writeFileSync("dados/users.json", JSON.stringify(users));
+  fs.writeFileSync('dados/users.json', JSON.stringify(users));
 
   if (userExists) {
-    res.render("auth/register");
+    res.render('auth/register');
   } else {
     users.users.push({ email, password });
-    res.render("auth/login");
+    res.render('auth/login');
   }
 });
 
 //Cadastro de Tarefas
-app.post("/register/tasks", (req, res) => {
+app.post('/register/tasks', (req, res) => {
   const { name, task, time_finish } = req.body;
-
-  tasks.tasks.push({ name, task, time_finish });
 
   const taskExists = tasks.tasks.find((tasks) => tasks.name === name);
 
-  fs.writeFileSync("dados/tasks.json", JSON.stringify(tasks));
-
   if (taskExists) {
-    tasks.tasks.push({ name, task, time_finish });
-    res.render("tasks/registerTasks");
-  } else {
-    res.render("tasks/registerTasks", {
-      error: "Tarefa já existe na base de dados", //ta bugado aqui
+    res.render('tasks/registerTasks', {
+      error: 'Tarefa já existe na base de dados', //ta bugado aqui
     });
+  } else {
+    tasks.tasks.push({ name, task, time_finish });
+    fs.writeFileSync('dados/tasks.json', JSON.stringify(tasks));
+    res.render('tasks/registerTasks');
   }
 });
 
 // Rota principal
-app.get("/", (req, res) => {
-  res.render("home/home");
+app.get('/', (req, res) => {
+  res.render('home/home');
 });
 
-app.get("/login", (req, res) => {
-  res.render("auth/login");
+app.get('/login', (req, res) => {
+  res.render('auth/login');
 });
 
-app.get("/register", (req, res) => {
-  res.render("auth/register");
+app.get('/register', (req, res) => {
+  res.render('auth/register');
 });
 
-app.get("/tasks", (req, res) => {
-  res.render("tasks/tasks");
+app.get('/tasks', (req, res) => {
+  res.render('tasks/tasks', tasks);
 });
 
-app.get("/register/tasks", (req, res) => {
-  res.render("tasks/registerTasks");
+app.get('/register/tasks', (req, res) => {
+  res.render('tasks/registerTasks');
 });
 
 app.listen(3000, () => {
-  console.log("Servidor rodando na porta 3000");
-  console.log("Acesse: http://localhost:3000");
+  console.log('Servidor rodando na porta 3000');
+  console.log('Acesse: http://localhost:3000');
 });

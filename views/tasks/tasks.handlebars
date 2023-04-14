@@ -1,46 +1,17 @@
+{{#if tasks.length}}
 <article class="grid-wrap">
+  {{#each tasks}}
   <div class="card">
     <div class="card-head"></div>
     <div class="card-body">
-      <h3>Header</h3>
-      <p>Lipsum Ipsum Tipsum</p>
+      <h3>{{name}}</h3>
+      <p>{{task}}</p>
     </div>
   </div>
-  <div class="card">
-    <div class="card-head"></div>
-    <div class="card-body">
-      <h3>Header</h3>
-      <p>Lipsum Ipsum Tipsum</p>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-head"></div>
-    <div class="card-body">
-      <h3>Header</h3>
-      <p>Lipsum Ipsum Tipsum</p>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-head"></div>
-    <div class="card-body">
-      <h3>Header</h3>
-      <p>Lipsum Ipsum Tipsum</p>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-head"></div>
-    <div class="card-body">
-      <h3>Header</h3>
-      <p>Lipsum Ipsum Tipsum</p>
-    </div>
-  </div>
-  <div class="card">
-    <div class="card-head"></div>
-    <div class="card-body">
-      <h3>Header</h3>
-      <p>Lipsum Ipsum Tipsum</p>
-    </div>
-  </div>
-
-  <a href="/register/tasks">Ir para Cadastro de tarefas</a>
+  {{/each}}
 </article>
+{{else}}
+<p>Não há tarefas para exibir.</p>
+{{/if}}
+
+<a href="/register/tasks">Ir para Cadastro de tarefas</a>
