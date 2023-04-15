@@ -85,7 +85,7 @@ app.post('/register/tasks', (req, res) => {
 
 // Rota principal
 app.get('/', (req, res) => {
-  res.render('home/home');
+  res.render('home/home', tasks);
 });
 
 app.get('/login', (req, res) => {

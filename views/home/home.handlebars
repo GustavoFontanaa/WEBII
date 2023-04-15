@@ -1,4 +1,22 @@
-<div class='auth-container'>
-  <h1>PAGINA INICIAL</h1>
-
+<div class="home-banner">
+  <div class="home-container">
+      <h1>Lorem Ipsum</h1>
+  </div>
+</div>
+<div class="container home">
+  <div class='auth-container' style="width: 80%; max-width: 1200px;">
+    <h1 class="title-section">PAGINA INICIAL</h1>
+    {{#if tasks.length}}
+      <div class="list-card-row">
+        {{#each tasks}}
+          <div class="list-card">
+            <h1>{{name}}</h1>
+            <span class="material-symbols-outlined" style="font-size: 35px">arrow_forward_ios</span>
+          </div>
+        {{/each}}
+      </div>
+    {{else}}
+        <p>Não há tarefas para exibir.</p>
+    {{/if}}
+  </div>
 </div>

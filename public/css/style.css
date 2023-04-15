@@ -2,10 +2,12 @@
   font-family: Helvetica, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #222;
   color: #fff;
 }
 
+body {
+  background-color: #222;
+}
 /* NAVBAR */
 #logo img {
   height: 40px;
@@ -56,17 +58,89 @@
   display: flex;
   flex-direction: column;
 }
+.auth-container .title-section {
+  text-align: center;
+  color: #f6982d;
+  margin: 50px auto;
+}
 
 .auth-container h2 {
   margin-bottom: 1em;
   color: #fff;
   border-left: 4px solid #f6982d;
   padding: 0.3em;
-  width: 100px;
+  width: 100%;
 }
 
 .auth-container a {
   color: #f6982d;
+}
+
+.home-banner {
+  display: flex;
+  justify-content: end;
+  width: 100%;
+  height: 400px;
+  background-color: #060606;
+  margin-top: -16px;
+}
+.home-container {
+  display: inline-block;
+  width: 80%;
+  margin: 0px auto;
+  max-width: 1200px;
+}
+.home-container h1{
+  margin-top: 180px;
+}
+
+.home {
+  background-color: white;
+}
+
+.home .list-card-row {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 82px;
+}
+
+.home .list-card {
+  width: 100%;
+  /* background-color: #f6982d; */
+  border: 0px;
+  padding: 20px;
+  grid-template-rows: 85px 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  margin: 0.5em;
+  transition: 0.3s ease-in-out all;
+  cursor: pointer;
+}
+.home .list-card:hover {
+  color: white;
+  background-color: #f6982d;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4);
+}
+.home .list-card:hover h1, .home .list-card:hover span {
+  color: white;
+}
+
+.home .list-card h1, .home .list-card span {
+  transition: 0.3s ease-in-out all;
+  color: #f6982d;
+}
+
+.login {
+  margin: 200px auto;
+}
+
+.tasks-register {
+  margin: 150px auto;
 }
 
 .form-control {
@@ -82,9 +156,11 @@
 
 .form-control input,
 .form-control textarea {
-  padding: 7px;
+  padding: 14px 10px;
   border-radius: 3px;
   border: 1px solid #f6982d;
+  background-color: transparent;
+  font-size: 14px;
 }
 
 form input[type='submit'],
