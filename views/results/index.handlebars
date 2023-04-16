@@ -1,0 +1,27 @@
+<h1 class="title">Resultados</h1>
+{{#if resultados.length}}
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Data</th>
+        <th>Perguntas</th>
+        <th>Acertos</th>
+        <th>Nota</th>
+        <th>Feedback</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each resultados}}
+        <tr>
+          <td class="date">{{data_hora}}</td>
+          <td class="num-questions">{{num_perguntas}}</td>
+          <td class="num-correct-answers">{{num_respostas_corretas}}</td>
+          <td class="grade">{{nota}}</td>
+          <td class="feedback">{{feedback}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <p class="no-results">Nenhum resultado encontrado.</p>
+{{/if}}

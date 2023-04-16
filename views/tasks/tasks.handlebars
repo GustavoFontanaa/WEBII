@@ -1,17 +1,18 @@
-{{#if tasks.length}}
-  <article class="grid-wrap">
-    {{#each tasks}}
-      <div class="card">
-        <div class="card-head"></div>
-        <div class="card-body">
-          <h3>{{name}}</h3>
-          <p>{{task}}</p>
-        </div>
+{{#if perguntas.length}}
+<article class="grid-wrap">
+  {{#each perguntas}}
+  <a href="/questions/{{ id }}">
+    <div class="card">
+      <div class="card-head"></div>
+      <div class="card-body">
+        <h3>{{pergunta}}</h3>
       </div>
-    {{/each}}
-  </article>
-  {{else}}
-  <p>Não há tarefas para exibir.</p>
+    </div>
+  </a>
+  {{/each}}
+</article>
+{{else}}
+<p>Não há tarefas para exibir.</p>
 {{/if}}
 
 <a href="/register/tasks">Ir para Cadastro de tarefas</a>

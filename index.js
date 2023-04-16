@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const users = require('./dados/users.json');
 const tasks = require('./dados/tasks.json');
+const results = require('./dados/resultados.json');
 const fs = require('fs');
 
 const app = express();
@@ -41,7 +42,7 @@ app.post('/login', (req, res) => {
   );
 
   if (user) {
-    res.render('tasks/tasks.handlebars');
+    res.redirect('tasks');
   } else {
     res.render('auth/login', { error: 'Credenciais inválidas' });
   }
@@ -51,36 +52,72 @@ app.post('/login', (req, res) => {
 app.post('/register', (req, res) => {
   const { email, password } = req.body;
 
-  users.users.push({ email, password });
-
   // Verificar se o usuário já existe no arquivo users.json
   const userExists = users.users.find((user) => user.email === email);
 
-  fs.writeFileSync('dados/users.json', JSON.stringify(users));
-
   if (userExists) {
-    res.render('auth/register');
+    res.render('auth/register', { error: 'Usuário ja existe' });
   } else {
     users.users.push({ email, password });
-    res.render('auth/login');
+    fs.writeFileSync('dados/users.json', JSON.stringify(users));
+    res.redirect('login');
   }
 });
 
 //Cadastro de Tarefas
 app.post('/register/tasks', (req, res) => {
-  const { name, task, time_finish } = req.body;
+  const { id, pergunta, opcoes, resposta_correta } = req.body;
 
-  const taskExists = tasks.tasks.find((tasks) => tasks.name === name);
+  const taskExists = tasks.perguntas.find(
+    (perguntas) => perguntas.pergunta === pergunta
+  );
+
 
   if (taskExists) {
     res.render('tasks/registerTasks', {
-      error: 'Tarefa já existe na base de dados', //ta bugado aqui
+      error: 'Tarefa já existe na base de dados',
     });
   } else {
-    tasks.tasks.push({ name, task, time_finish });
+    const { id, pergunta, a, b, c, d, e, resposta_correta } = req.body;
+    const tasks = JSON.parse(fs.readFileSync('dados/tasks.json', 'utf-8'));
+    const lastTask = tasks.perguntas[tasks.perguntas.length - 1];
+    const newId = lastTask ? lastTask.id + 1 : 1;
+    tasks.perguntas.push({
+      id: newId,
+      pergunta,
+      opcoes: [
+        { letra: 'a', resposta: a },
+        { letra: 'b', resposta: b },
+        { letra: 'c', resposta: c },
+        { letra: 'd', resposta: d },
+        { letra: 'e', resposta: e },
+      ],
+      resposta_correta,
+    });
     fs.writeFileSync('dados/tasks.json', JSON.stringify(tasks));
     res.render('tasks/registerTasks');
   }
+});
+
+app.get('/questions/:id', (req, res) => {
+  const id = req.params.id;
+
+  res.render('questions/index', tasks.perguntas[id - 1]);
+});
+
+app.post('/results', (req, res) => {
+  const resultados = JSON.parse(
+    fs.readFileSync('dados/resultados.json', 'utf-8')
+  );
+
+  // salvando os resultados em um arquivo JSON
+  fs.writeFile('dados/resultados.json', JSON.stringify(resultados), (err) => {
+    if (err) throw err;
+    console.log('Resultados salvos com sucesso!');
+  });
+
+  // renderizando a página de resultados
+  res.render('results/index', { resultados });
 });
 
 // Rota principal
@@ -102,6 +139,16 @@ app.get('/tasks', (req, res) => {
 
 app.get('/register/tasks', (req, res) => {
   res.render('tasks/registerTasks');
+});
+
+app.get('/results', (req, res) => {
+  results.resultados.sort((a, b) => {
+    if (a.num_perguntas === b.num_perguntas) {
+      return b.num_respostas_corretas - a.num_respostas_corretas;
+    }
+    return b.num_perguntas - a.num_perguntas;
+  });
+  res.render('results/index', results);
 });
 
 app.listen(3000, () => {

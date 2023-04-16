@@ -1,0 +1,12 @@
+<h1>{{pergunta}}</h1>
+<form method="post" action="/results">
+    {{#each opcoes}}
+    <input type="radio" name="resposta" value="{{letra}}"> {{resposta}}<br>
+    {{/each}}
+
+    {{#if opcoes.length}}
+    <input type="submit" value="Próxima Pergunta">
+    {{else}}
+    <input type="submit" value="Entregar Teste">
+    {{/if}}
+</form>
