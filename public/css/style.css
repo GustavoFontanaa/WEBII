@@ -1,3 +1,8 @@
+:root {
+  --cor-principal: #fb008b;
+  --cor-complementar: #ff76da;
+}
+
 * {
   font-family: Helvetica, sans-serif;
   margin: 0;
@@ -6,7 +11,7 @@
 }
 
 body {
-  background-color: #222;
+  background-color: var(--cor-principal);
 }
 /* NAVBAR */
 #logo img {
@@ -21,7 +26,7 @@ body {
   align-items: center;
   background-color: #222;
   color: #fff;
-  border-bottom: 1px solid #f6982d;
+  border-bottom: 1px solid var(--cor-complementar);
 }
 
 #navbar ul {
@@ -60,7 +65,7 @@ body {
 }
 .auth-container .title-section {
   text-align: center;
-  color: #f6982d;
+  color: var(--cor-complementar);
   margin: 50px auto;
 }
 
@@ -81,7 +86,7 @@ body {
   justify-content: end;
   width: 100%;
   height: 400px;
-  background-color: #060606;
+  background: url(./../img/banner.jpg);
   margin-top: -16px;
 }
 .home-container {
@@ -123,7 +128,7 @@ body {
 }
 .home .list-card:hover {
   color: white;
-  background-color: #f6982d;
+  background-color: var(--cor-complementar);
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4);
 }
 .home .list-card:hover h1, .home .list-card:hover span {
@@ -132,7 +137,7 @@ body {
 
 .home .list-card h1, .home .list-card span {
   transition: 0.3s ease-in-out all;
-  color: #f6982d;
+  color: var(--cor-complementar);
 }
 
 .login {
