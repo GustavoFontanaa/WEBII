@@ -1,11 +1,11 @@
-{{#if perguntas.length}}
+{{#if avaliacoes.length}}
 <article class="grid-wrap">
-  {{#each perguntas}}
-  <a href="/questions/{{ id }}">
+  {{#each avaliacoes}}
+  <a href="/avaliacao/{{ id }}">
     <div class="card">
       <div class="card-head"></div>
       <div class="card-body">
-        <h3>{{pergunta}}</h3>
+        <h3>{{nome}}</h3>
       </div>
     </div>
   </a>
@@ -15,4 +15,6 @@
 <p>Não há tarefas para exibir.</p>
 {{/if}}
 
-<a href="/register/tasks">Ir para Cadastro de tarefas</a>
+<a href="/register/tasks">Cadastrar nova avaliação</a>
+
+<a href="/register/pergunta">Cadastrar nova pergunta</a>

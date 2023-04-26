@@ -18,6 +18,29 @@ body {
   height: 40px;
 }
 
+.select-perguntas {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #fff;
+  background-image: linear-gradient(to bottom, #f9f9f9, #fff);
+  background-repeat: repeat-x;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+
+/* Estilos para as opções do select */
+.select-perguntas option {
+  padding: 10px;
+  margin-top: 2px;
+  font-size: 16px;
+  color:black;
+  background-color: rgb(226, 163, 210);
+
+}
+
 #navbar {
   padding: 1.2em 2.4em;
   margin-bottom: 1em;
