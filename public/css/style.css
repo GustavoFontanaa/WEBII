@@ -1,6 +1,7 @@
 :root {
   --cor-principal: #fb008b;
   --cor-complementar: #ff76da;
+  --cor-secundaria: #f7d2fb;
 }
 
 * {
@@ -8,6 +9,10 @@
   margin: 0;
   padding: 0;
   color: #fff;
+}
+
+a {
+  text-decoration: none;
 }
 
 body {
@@ -24,9 +29,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #222;
-  color: #fff;
-  border-bottom: 1px solid var(--cor-principal);
+  background-color: var(--cor-principal);
+  color: var(--cor-secundaria);
 }
 
 #navbar ul {
@@ -40,13 +44,13 @@ body {
 
 #navbar ul li a {
   text-decoration: none;
-  color: #fff;
+  color: var(--cor-secundaria);
   transition: 0.5s;
   font-weight: bold;
 }
 
 #navbar ul li a:hover {
-  color: var(--cor-principal);
+  color: var(--cor-complementar);
 }
 
 /* CONTAINER */
@@ -87,6 +91,8 @@ body {
   width: 100%;
   height: 400px;
   background: url(./../img/banner.jpg);
+  background-position: cover;
+  background-repeat: no-repeat;
   margin-top: -16px;
 }
 .home-container {
@@ -126,13 +132,17 @@ body {
   transition: 0.3s ease-in-out all;
   cursor: pointer;
 }
+
 .home .list-card:hover {
   color: white;
-  background-color: var(--cor-complementar);
+  background-color: var(--cor-principal);
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.4);
 }
 .home .list-card:hover h1, .home .list-card:hover span {
   color: white;
+}
+.home .list-card:hover .animation {
+  transform: translate(20%, 0%); 
 }
 
 .home .list-card h1, .home .list-card span {
@@ -201,7 +211,7 @@ footer {
 
 footer span {
   font-weight: bold;
-  color: var(--cor-principal);
+  color: var(--cor-secundaria);
 }
 
 .alert-danger {
