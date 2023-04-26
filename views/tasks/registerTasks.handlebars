@@ -1,30 +1,23 @@
 <div class='auth-container tasks-register'>
-  <h2>Cadastrar Tarefa</h2>
-  <form class='form-control' action='/register/tasks' method='POST'>
-    <h1>Cadastro de Perguntas</h1>
-    <label>Pergunta:</label><br>
-    <textarea name="pergunta" required></textarea><br><br>
-    <label>Opção A:</label>
-    <input type="text" name="a" required><br>
-    <label>Opção B:</label>
-    <input type="text" name="b" required><br>
-    <label>Opção C:</label>
-    <input type="text" name="c" required><br>
-    <label>Opção D:</label>
-    <input type="text" name="d" required><br>
-    <label>Opção E:</label>
-    <input type="text" name="e" required><br><br>
-    <label>Resposta correta:</label>
-    <select name="resposta_correta" required>
-      <option value="a">A</option>
-      <option value="b">B</option>
-      <option value="c">C</option>
-      <option value="d">D</option>
-      <option value="e">E</option>
-    </select><br><br>
-    <input type="submit" value="Cadastrar">
-    {{#if error}}
-    <div class='alert-danger'>{{error}}</div>
-    {{/if}}
-  </form>
+	<h2>Nova Avaliação</h2>
+
+	<form class='form-control' action='/register/tasks' method='POST'>
+		<label>Nome da avaliação:</label>
+		<input type="text" name="nome_avaliacao" value="{{nome_avaliacao}}" required></input><br><br>
+
+
+		<h2>Selecione as perguntas:</h2><br>
+
+		<select name="perguntas"  class="select-perguntas" required multiple>
+			{{#each perguntas}}
+			<option value="{{this.id}}">{{this.pergunta}}</option>
+			{{/each}}
+		</select><br><br>
+
+		{{#if error}}
+		<div class='alert-danger'>{{error}}</div>
+		{{/if}}
+
+		<input type="submit" value="Finalizar avaliação">
+	</form>
 </div>

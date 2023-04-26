@@ -1,12 +1,18 @@
-<h1>{{pergunta}}</h1>
 <form method="post" action="/results">
-    {{#each opcoes}}
-    <input type="radio" name="resposta" value="{{letra}}"> {{resposta}}<br>
-    {{/each}}
 
-    {{#if opcoes.length}}
-    <input type="submit" value="Próxima Pergunta">
-    {{else}}
-    <input type="submit" value="Entregar Teste">
-    {{/if}}
+<input type="text" name="Avaliação" value="{{avaliacao}}" required disabled></input><br><br>
+
+<label>Nome do Aluno:</label>
+<input type="text" name="nome_aluno" required></input><br><br>
+
+{{#each perguntas}}
+    <h1>{{pergunta}}</h1>
+
+    {{#each opcoes}}
+        <input type="radio" name="resposta_{{../id}}" value="{{letra}}"> {{resposta}}<br>
+    {{/each}}
+    <input type="hidden" name="resposta_correta_{{id}}" value="{{resposta_correta}}"></input>
+{{/each}}
+
+<input type="submit" value="Entregar Teste">
 </form>

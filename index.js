@@ -24,7 +24,7 @@ app.use(cookieParser());
 // Configuração do Express Session
 app.use(
   session({
-    secret: '777@#978terghbdfgpt',
+    secret: "777@#978terghbdfgpt",
     resave: false,
     saveUninitialized: true,
   })
@@ -42,9 +42,9 @@ app.post('/login', (req, res) => {
   );
 
   if (user) {
-    res.redirect('tasks');
+    res.redirect("tasks");
   } else {
-    res.render('auth/login', { error: 'Credenciais inválidas' });
+    res.render("auth/login", { error: "Credenciais inválidas" });
   }
 });
 
@@ -56,68 +56,108 @@ app.post('/register', (req, res) => {
   const userExists = users.users.find((user) => user.email === email);
 
   if (userExists) {
-    res.render('auth/register', { error: 'Usuário ja existe' });
+    res.render("auth/register", { error: "Usuário ja existe" });
   } else {
     users.users.push({ email, password });
-    fs.writeFileSync('dados/users.json', JSON.stringify(users));
-    res.redirect('login');
+    fs.writeFileSync("dados/users.json", JSON.stringify(users));
+    res.redirect("login");
   }
 });
 
 //Cadastro de Tarefas
-app.post('/register/tasks', (req, res) => {
-  const { id, pergunta, opcoes, resposta_correta } = req.body;
+app.post("/register/tasks", (req, res) => {
+  const { perguntas, nome_avaliacao } = req.body;
 
-  const taskExists = tasks.perguntas.find(
-    (perguntas) => perguntas.pergunta === pergunta
+  const tasks = JSON.parse(fs.readFileSync("dados/tasks.json", "utf-8"));
+
+  const avaliacaoExists = tasks.avaliacoes.find(
+    (avaliacao) => avaliacao.nome === nome_avaliacao
   );
 
-
-  if (taskExists) {
-    res.render('tasks/registerTasks', {
-      error: 'Tarefa já existe na base de dados',
+  if (avaliacaoExists) {
+    res.render("tasks/registerTasks", {
+      error: "Já existe uma avaliação com este nome",
     });
   } else {
-    const { id, pergunta, a, b, c, d, e, resposta_correta } = req.body;
-    const tasks = JSON.parse(fs.readFileSync('dados/tasks.json', 'utf-8'));
-    const lastTask = tasks.perguntas[tasks.perguntas.length - 1];
-    const newId = lastTask ? lastTask.id + 1 : 1;
-    tasks.perguntas.push({
+    const newId = tasks.avaliacoes.length + 1;
+
+    tasks.avaliacoes.push({
       id: newId,
-      pergunta,
-      opcoes: [
-        { letra: 'a', resposta: a },
-        { letra: 'b', resposta: b },
-        { letra: 'c', resposta: c },
-        { letra: 'd', resposta: d },
-        { letra: 'e', resposta: e },
-      ],
-      resposta_correta,
+      nome: nome_avaliacao,
+      perguntas: perguntas.map((perguntaId) => parseInt(perguntaId)),
     });
-    fs.writeFileSync('dados/tasks.json', JSON.stringify(tasks));
-    res.render('tasks/registerTasks');
+
+    fs.writeFileSync("dados/tasks.json", JSON.stringify(tasks));
+    res.redirect("/tasks");
   }
 });
 
-app.get('/questions/:id', (req, res) => {
+app.get("/questions/:id", (req, res) => {
   const id = req.params.id;
 
-  res.render('questions/index', tasks.perguntas[id - 1]);
+  res.render("questions/index", tasks.perguntas[id - 1]);
 });
 
-app.post('/results', (req, res) => {
-  const resultados = JSON.parse(
-    fs.readFileSync('dados/resultados.json', 'utf-8')
+app.get("/avaliacao/:id", (req, res) => {
+  const id = req.params.id;
+
+  const tasks = JSON.parse(fs.readFileSync("dados/tasks.json", "utf-8"));
+
+  const avaliacao = tasks.avaliacoes.pop((avaliacao) => avaliacao.id == id);
+
+  const perguntaFile = JSON.parse(
+    fs.readFileSync("dados/pergunta.json", "utf-8")
+  );
+  const perguntas = perguntaFile.pergunta.filter((pergunta) =>
+    avaliacao.perguntas.includes(pergunta.id)
   );
 
-  // salvando os resultados em um arquivo JSON
-  fs.writeFile('dados/resultados.json', JSON.stringify(resultados), (err) => {
-    if (err) throw err;
-    console.log('Resultados salvos com sucesso!');
-  });
+  res.render("questions/index", { perguntas, avaliacao: avaliacao.nome});
+});
 
-  // renderizando a página de resultados
-  res.render('results/index', { resultados });
+app.post("/results", (req, res) => {
+  const data = req.body;
+
+  const nomeAluno = data.nome_aluno;
+  const avaliacao = data.avaliacao;
+
+  delete data.nome_aluno;
+
+  let numQuestoes = 0;
+  let numAcertos = 0;
+
+  for (let chave in data) {
+    if (!chave.startsWith("resposta_correta")) {
+      let numPergunta = chave.split("_")[1];
+
+      if (data[chave] === data[`resposta_correta_${numPergunta}`]) {
+        numAcertos++;
+      }
+      numQuestoes++;
+    }
+  }
+
+  const nota = (10 * numAcertos) / numQuestoes;
+
+  const resultado = {
+	avaliacao: avaliacao,
+    aluno: nomeAluno,
+    nota: parseFloat(nota.toFixed(2)),
+    num_perguntas: numQuestoes,
+    num_respostas_corretas: numAcertos,
+    feedback: nota > 6 ? "Parabéns você foi acima da média!!" : "Estude um pouco mais, não foi dessa vez",
+  };
+
+  const resultados = JSON.parse(fs.readFileSync("dados/resultados.json", "utf-8"));
+
+  resultados.resultados.push(resultado);
+
+    fs.writeFile("dados/resultados.json", JSON.stringify(resultados), (err) => {
+      if (err) throw err;
+      console.log("Resultados salvos com sucesso!");
+    });
+
+    res.render("results/index", { resultados });
 });
 
 // Rota principal
@@ -137,8 +177,10 @@ app.get('/tasks', (req, res) => {
   res.render('tasks/tasks', tasks);
 });
 
-app.get('/register/tasks', (req, res) => {
-  res.render('tasks/registerTasks');
+app.get("/register/tasks", (req, res) => {
+  const pergunta = JSON.parse(fs.readFileSync("dados/pergunta.json", "utf-8"));
+
+  res.render("tasks/registerTasks", { perguntas: pergunta.pergunta });
 });
 
 app.get('/results', (req, res) => {
