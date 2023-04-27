@@ -6,6 +6,7 @@ const session = require('express-session');
 const users = require('./dados/users.json');
 const tasks = require('./dados/tasks.json');
 const results = require('./dados/resultados.json');
+const cadastroPerguntas = require('./dados/pergunta.json')
 const fs = require('fs');
 
 const app = express();
@@ -77,7 +78,7 @@ app.post("/register/tasks", (req, res) => {
   if (avaliacaoExists) {
     const pergunta = JSON.parse(fs.readFileSync("dados/pergunta.json", "utf-8"));
 
-    res.render("tasks/registerTasks", { 
+    res.render("tasks/registerTasks", {
       error: "Já existe uma avaliação com este nome",
       perguntas: pergunta.pergunta
     });
@@ -115,7 +116,7 @@ app.get("/avaliacao/:id", (req, res) => {
     avaliacao.perguntas.includes(pergunta.id)
   );
 
-  res.render("questions/index", { perguntas, avaliacao: avaliacao.nome});
+  res.render("questions/index", { perguntas, avaliacao: avaliacao.nome });
 });
 
 app.post("/results", (req, res) => {
@@ -143,7 +144,7 @@ app.post("/results", (req, res) => {
   const nota = (10 * numAcertos) / numQuestoes;
 
   const resultado = {
-	avaliacao: avaliacao,
+    avaliacao: avaliacao,
     aluno: nomeAluno,
     nota: parseFloat(nota.toFixed(2)),
     num_perguntas: numQuestoes,
@@ -155,12 +156,12 @@ app.post("/results", (req, res) => {
 
   resultados.resultados.push(resultado);
 
-    fs.writeFile("dados/resultados.json", JSON.stringify(resultados), (err) => {
-      if (err) throw err;
-      console.log("Resultados salvos com sucesso!");
-    });
+  fs.writeFile("dados/resultados.json", JSON.stringify(resultados), (err) => {
+    if (err) throw err;
+    console.log("Resultados salvos com sucesso!");
+  });
 
-    res.render("results/index", { resultados });
+  res.render("results/index", { resultados });
 });
 
 // Rota principal
@@ -180,6 +181,10 @@ app.get('/tasks', (req, res) => {
   res.render('tasks/tasks', tasks);
 });
 
+app.get('/cadastroPerguntas', (req, res) => {
+  res.render('cadastroPerguntas/cadastroPerguntas', cadastroPerguntas);
+});
+
 app.get("/register/tasks", (req, res) => {
   const pergunta = JSON.parse(fs.readFileSync("dados/pergunta.json", "utf-8"));
 
@@ -196,7 +201,44 @@ app.get('/results', (req, res) => {
   res.render('results/index', results);
 });
 
+
+app.post("/register/cadastroPerguntas", (req, res) => {
+    const pergunta = req.body['cad-pergunta'];
+    const respostas = {
+      'a': req.body["a"],
+      'b': req.body["b"],
+      'c': req.body["c"],
+      'd': req.body["d"],
+      'e': req.body["e"],
+      'respostaCorreta': req.body["resposta_correta"]
+    };
+    // Lê o conteúdo atual do arquivo perguntas.json
+    const conteudo = fs.readFileSync('./dados/pergunta.json', "utf-8");
+
+    // Analisa o conteúdo JSON do arquivo para um objeto JavaScript
+    const perguntas = JSON.parse(conteudo);
+
+    // Adiciona a nova pergunta e respostas ao array de perguntas
+    perguntas.push({ pergunta, respostas });
+
+    // Escreve o array atualizado de perguntas no arquivo perguntas.json
+    fs.writeFileSync('./dados/pergunta.json', JSON.stringify(perguntas));
+    alert("Cadastro efetuado com sucesso!")
+    res.redirect("/register/cadastroPerguntas");
+
+  });
+
+
+app.get('/register/cadastroPerguntas', (req, res) => {
+  res.render(cadastro)
+  const cadPergunta = fs.readFileSync('./dados/pergunta.json', 'utf8');
+  res.send(cadPergunta);
+});
+
 app.listen(3000, () => {
   console.log('Servidor rodando na porta 3000');
   console.log('Acesse: http://localhost:3000');
 });
+
+
+
