@@ -201,36 +201,28 @@ app.get('/results', (req, res) => {
   res.render('results/index', results);
 });
 
+app.post('/register/cadastroPerguntas', (req, res) => {
+  const pergunta = req.body['cad-pergunta']
+  const respostaA = req.body['resposta1']
+  const respostaB = req.body['resposta2']
+  const respostaC = req.body['resposta3']
+  const respostaD = req.body['resposta4']
+  const respostaE = req.body['resposta5']
+  const respostaCorreta = req.body['resposta-correta']
 
-app.post("/register/cadastroPerguntas", (req, res) => {
-    const pergunta = req.body['cad-pergunta'];
-    const respostas = {
-      'a': req.body["a"],
-      'b': req.body["b"],
-      'c': req.body["c"],
-      'd': req.body["d"],
-      'e': req.body["e"],
-      'respostaCorreta': req.body["resposta_correta"]
-    };
-    // Lê o conteúdo atual do arquivo perguntas.json
+  res.send('Pergunta criada com sucesso!')
+  
     const conteudo = fs.readFileSync('./dados/pergunta.json', "utf-8");
 
-    // Analisa o conteúdo JSON do arquivo para um objeto JavaScript
     const perguntas = JSON.parse(conteudo);
 
-    // Adiciona a nova pergunta e respostas ao array de perguntas
-    perguntas.push({ pergunta, respostas });
-
-    // Escreve o array atualizado de perguntas no arquivo perguntas.json
     fs.writeFileSync('./dados/pergunta.json', JSON.stringify(perguntas));
-    alert("Cadastro efetuado com sucesso!")
     res.redirect("/register/cadastroPerguntas");
 
   });
 
-
 app.get('/register/cadastroPerguntas', (req, res) => {
-  res.render(cadastro)
+  res.render('/register/cadastroPerguntas')
   const cadPergunta = fs.readFileSync('./dados/pergunta.json', 'utf8');
   res.send(cadPergunta);
 });
