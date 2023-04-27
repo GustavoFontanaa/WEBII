@@ -243,8 +243,50 @@ body {
   right: 0px;
 }
 
+.tasks-container {
+  max-width: 1200px;
+  margin: 0px auto;
+  min-height: calc(100vh - 154px);
+}
+
+.tasks-title { 
+  padding: 50px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.tasks-container .tasks-title .actions {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.tasks-container .tasks-title .actions a {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: var(--cor-secundaria);
+  color: var(--cor-complementar);
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all ease-in-out 0.3s;
+}
+
+.tasks-container .tasks-title .actions a:hover {
+  transform: scale(1.02, 1.02);
+}
+
 .tasks-register {
-  margin: 150px auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+}
+
+.tasks-register .tasks-description {
+  margin: auto;
+  width: 600px;
 }
 
 .form-control {

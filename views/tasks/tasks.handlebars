@@ -1,20 +1,31 @@
-{{#if avaliacoes.length}}
-<article class="grid-wrap">
-  {{#each avaliacoes}}
-  <a href="/avaliacao/{{ id }}">
-    <div class="card">
-      <div class="card-head"></div>
-      <div class="card-body">
-        <h3>{{nome}}</h3>
-      </div>
-    </div>
-  </a>
-  {{/each}}
-</article>
-{{else}}
-<p>Não há tarefas para exibir.</p>
-{{/if}}
 
-<a href="/register/tasks">Cadastrar nova avaliação</a>
+<div class="tasks-container">
+  <div class="tasks-title">
+    <h1>Avaliações Cadastradas</h1>
+    <div class="actions">
+      <a href="/register/tasks">Cadastrar Avaliação</a>
+      <a href="/register/pergunta">Cadastrar Pergunta</a> 
+    </div>   
+  </div>
+  <div class="tasks-description">
+    <table>
+      <tr>
+        <th>Nome da avaliação</th>
+        <th>Ações</th>
+      </tr>
+      {{#if avaliacoes.length}}
+        {{#each avaliacoes}}
+        <tr>
+          <td>{{nome}}</td>
+          <td><a href="/avaliacao/{{ id }}">Ver</a></td>
+        </tr>
+        {{/each}}
+      {{else}}
+        <tr>
+          <td colspan="2">Não há tarefas para exibir.</td>      
+        </tr>    
+      {{/if}}
+    </table>
+  </div>
+</div>
 
-<a href="/register/pergunta">Cadastrar nova pergunta</a>

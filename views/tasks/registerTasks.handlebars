@@ -1,23 +1,25 @@
-<div class='auth-container tasks-register'>
-	<h2>Nova Avaliação</h2>
+<div class="tasks-container tasks-register">
+	<div class="tasks-description">
+		<h2>Nova Avaliação</h2>
 
-	<form class='form-control' action='/register/tasks' method='POST'>
-		<label>Nome da avaliação:</label>
-		<input type="text" name="nome_avaliacao" value="{{nome_avaliacao}}" required></input><br><br>
+			<form class='form-control' action='/register/tasks' method='POST'>
+				<label>Nome da avaliação:</label>
+				<input type="text" name="nome_avaliacao" value="{{nome_avaliacao}}" required></input><br><br>
 
 
-		<h2>Selecione as perguntas:</h2><br>
+				<h2>Selecione as perguntas:</h2><br>
 
-		<select name="perguntas"  class="select-perguntas" required multiple>
-			{{#each perguntas}}
-			<option value="{{this.id}}">{{this.pergunta}}</option>
-			{{/each}}
-		</select><br><br>
+				<select name="perguntas"  class="select-perguntas" required multiple>
+					{{#each perguntas}}
+					<option value="{{this.id}}">{{this.pergunta}}</option>
+					{{/each}}
+				</select><br><br>
 
-		{{#if error}}
-		<div class='alert-danger'>{{error}}</div>
-		{{/if}}
+				{{#if error}}
+				<div class='alert-danger'>{{error}}</div>
+				{{/if}}
 
-		<input type="submit" value="Finalizar avaliação">
-	</form>
+				<input type="submit" value="Finalizar avaliação">
+			</form>
+	</div>
 </div>
