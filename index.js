@@ -75,8 +75,11 @@ app.post("/register/tasks", (req, res) => {
   );
 
   if (avaliacaoExists) {
-    res.render("tasks/registerTasks", {
+    const pergunta = JSON.parse(fs.readFileSync("dados/pergunta.json", "utf-8"));
+
+    res.render("tasks/registerTasks", { 
       error: "Já existe uma avaliação com este nome",
+      perguntas: pergunta.pergunta
     });
   } else {
     const newId = tasks.avaliacoes.length + 1;
