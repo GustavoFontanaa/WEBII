@@ -1,5 +1,8 @@
 <div class='login'style="width: 100%">
   <div class='auth-container login-card'>
+    {{#if error}}
+      <div class='alert-danger'>{{error}}</div>
+    {{/if}}
     <h2>Entrar</h2>
     <form action='/login' method='POST'>
       <div class='form-control'>
@@ -14,11 +17,7 @@
 
       <input type='submit' value='Entrar' />
       <p>Não tem conta? <a href='/register'>Clique aqui</a></p>
-    </form>
-
-    {{#if error}}
-      <div class='alert-danger'>{{error}}</div>
-    {{/if}}
+    </form>    
   </div>
   
   <img class="barbie" src="img/barbie2.png">

@@ -71,17 +71,37 @@ body {
   color: var(--cor-secundaria);
   transition: 0.5s;
   font-weight: bold;
+  padding: 10px 15px;  
+}
+#navbar ul li a:nth-child(2) {
+  color: var(--cor-principal);
+  border-radius: 40px;  
+  background-color: var(--cor-secundaria);
 }
 
 #navbar ul li a:hover {
-  color: var(--cor-complementar);
+  /* color: var(--cor-complementar); */
 }
 
 /* CONTAINER */
 
 .container {
-  min-height: 60vh;
-  padding: 2em;
+  max-width: 1300px;
+  margin: 0px auto;
+}
+
+.container .title-section {
+  text-align: center;
+  color: var(--cor-complementar);
+  margin: 50px auto;
+}
+
+.container h2 {
+  margin-bottom: 1em;
+  color: var(--cor-principal);
+  border-left: 4px solid var(--cor-principal);
+  padding: 0.3em;
+  width: 100%;
 }
 
 /* LOGIN E REGISTER */
@@ -109,6 +129,12 @@ body {
   color: var(--cor-principal);
 }
 
+.home {
+  background-color: white;
+  position: relative;
+  padding: 10px;
+}
+
 .home-banner {
   display: flex;
   justify-content: end;
@@ -116,23 +142,19 @@ body {
   margin-top: -16px;
 }
 
-.home {
-  background-color: white;
-  position: relative;
-}
-
 .home .bibble {
   position: absolute;
   top: -90px;
   left: 0px;
   transform: scaleX(-1);
-  width: 350px;
+  width: 30%;
 }
 
 .home .barbie {
   position: absolute;
   bottom: 0px;
   right: 0px;
+  width: 50%;
 }
 
 .home .list-card-col {
@@ -153,8 +175,7 @@ body {
 }
 
 .home .list-card {
-  width: 100%;
-  /* background-color: var(--cor-principal); */
+  width: 80%;
   border: 0px;
   padding: 20px;
   grid-template-rows: 85px 25px;
@@ -163,7 +184,7 @@ body {
   justify-content: space-between;
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  margin: 0.5em;
+  margin: 0.5em auto;
   transition: 0.3s ease-in-out all;
   cursor: pointer;
   background-color: #fff;
@@ -238,7 +259,7 @@ body {
 
 .login .barbie {
   position: absolute;
-  width: 400px;
+  width: 20%;
   bottom: 0px;  
   right: 0px;
 }
@@ -266,22 +287,43 @@ body {
 .tasks-container .tasks-title .actions a {
   display: inline-block;
   padding: 10px 15px;
-  background-color: var(--cor-secundaria);
-  color: var(--cor-complementar);
+  /* background-color: var(--cor-secundaria); */
+  color: var(--cor-principal);
   border-radius: 50px;
   font-weight: 600;
   transition: all ease-in-out 0.3s;
+  border: 1px solid var(--cor-principal);
 }
 
 .tasks-container .tasks-title .actions a:hover {
   transform: scale(1.02, 1.02);
 }
-
+.go-back-btn {
+  width: 24px;
+  height: 24px;
+  padding: 10px;
+  background-color: #e2a3d24f;;
+  border-radius: 130px;
+}
+.go-back-btn span {
+  color: #e2a3d2;;
+}
 .tasks-register {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-content: center;
+  margin-bottom: 50px;
+}
+
+.tasks-register .title-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.tasks-register .title-section input[type='submit']{
+  border-radius: 40px;
 }
 
 .tasks-register .tasks-description {
@@ -297,7 +339,7 @@ body {
 }
 
 .results-container .barbie {
-  width: 500px;
+  width: 25%;
   position: absolute;
   bottom: 0;
   right: 10%;
@@ -383,7 +425,7 @@ footer span {
 
 .alert-danger {
   position: relative;
-  top: 60px;
+  top: -40px;
   background-color: #ffbfc2;
   border: 1px solid #ff0909;
   width: 70%;
