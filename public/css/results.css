@@ -17,7 +17,7 @@
   }
   
   thead {
-    background-color: #f6982d;
+    background-color: var(--cor-secundaria);
   }
   
   th {

@@ -289,6 +289,28 @@ body {
   width: 600px;
 }
 
+.results-container {
+  max-width: 1200px;
+  margin: 0px auto;
+  min-height: calc(100vh - 154px);
+  position: relative;
+}
+
+.results-container .barbie {
+  width: 500px;
+  position: absolute;
+  bottom: 0;
+  right: 10%;
+}
+
+.results-title { 
+  padding: 50px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+}
+
 .form-control {
   display: flex;
   flex-direction: column;
