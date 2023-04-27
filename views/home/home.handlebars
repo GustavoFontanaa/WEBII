@@ -1,21 +1,61 @@
 <div class="home-banner">
-  <div class="home-container">
-  </div>
+    <img src="img/banner.jpg" width="100%" height="auto">
 </div>
-<div class="container home">
-  <div class='auth-container' style="width: 80%; max-width: 1200px;">
-    <h1 class="title-section">PAGINA INICIAL</h1>
-    {{#if tasks.length}}
-      <div class="list-card-row">
-        {{#each tasks}}
-          <div class="list-card">
-            <h1>{{name}}</h1>
-            <span class="material-symbols-outlined" style="font-size: 35px">arrow_forward_ios</span>
-          </div>
-        {{/each}}
+<div class="home" style="padding: 2em">
+  
+  <div class='auth-container' style="width: 90%; max-width: 1300px;">
+    <h1 class="title-section">Acesse as provas</h1>
+    <div class="list-card-row">
+          <a href="/results?=1" class="list-card-test">
+            <div class="card-icon">
+              <span class="material-symbols-outlined">quiz</span>
+            </div>            
+            <div class="card-text">
+              <h1>Prova 1</h1>
+              <h5>Clique aqui e acesse!</h5>
+            </div>
+          </a>
+          <a href="/results?=2" class="list-card-test">
+            <div class="card-icon">
+              <span class="material-symbols-outlined">quiz</span>
+            </div>            
+            <div class="card-text">
+              <h1>Prova 2</h1>
+              <h5>Clique aqui e acesse!</h5>
+            </div>
+          </a>
+          <a href="/results?=3" class="list-card-test">
+            <div class="card-icon">
+              <span class="material-symbols-outlined">quiz</span>
+            </div>            
+            <div class="card-text">
+              <h1>Prova 3</h1>
+              <h5>Clique aqui e acesse!</h5>
+            </div>
+          </a>
       </div>
-    {{else}}
-        <p>Não há tarefas para exibir.</p>
-    {{/if}}
   </div>
+  <div class='auth-container' style="width: 80%; max-width: 1200px;">
+    <h1 class="title-section">Acompanhe o resultado das provas</h1>
+    <div class="list-card-col">
+          <a href="/results?=1" class="list-card">
+            <h1>Prova 1</h1>
+            <span class="material-symbols-outlined animation" style="font-size: 35px">arrow_forward_ios</span>
+          </a>
+          <a href="/results?=2" class="list-card">
+            <h1>Prova 2</h1>
+            <span class="material-symbols-outlined animation" style="font-size: 35px">arrow_forward_ios</span>
+          </a>
+          <a href="/results?=3" class="list-card">
+            <h1>Prova 3</h1>
+            <span class="material-symbols-outlined animation" style="font-size: 35px">arrow_forward_ios</span>
+          </a>
+          <a href="/results?=4" class="list-card">
+            <h1>Prova 4</h1>
+            <span class="material-symbols-outlined animation" style="font-size: 35px">arrow_forward_ios</span>
+          </a>
+      </div>
+  </div>
+  <img class="barbie" src="img/barbie.png">
+  <img class="bibble" src="img/bibble.png">
 </div>
