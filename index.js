@@ -166,7 +166,7 @@ app.post("/results", (req, res) => {
 
 // Rota principal
 app.get('/', (req, res) => {
-  res.render('home/home', tasks);
+  res.render('home/home', {tasks: tasks.avaliacoes});
 });
 
 app.get('/login', (req, res) => {

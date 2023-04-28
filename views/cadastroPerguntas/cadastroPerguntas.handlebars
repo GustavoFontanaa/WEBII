@@ -1,43 +1,50 @@
-<div class="cadastro-container">
-    <h1 class="cadastro-title">Cadastro das Perguntas</h1>
-
-    <form class="form-cadastro" action="register/cadastroPerguntas" method='POST'>
-        <br><br><label>Crie a sua pergunta: </label>
-        <input type="text" id="cad-pergunta" name="cad-pergunt"> <br><br>
-
-       <br><br><label for="resposta1">a:</label>
-        <input type="text" id="a" name="resposta"><br><br>
-
-        <label for="resposta2">b:</label>
-        <input type="text" id="b" name="resposta"><br><br>
-
-        <label for="resposta3">c:</label>
-        <input type="text" id="c" name="resposta"><br><br>
-
-        <label for="resposta4">d:</label>
-        <input type="text" id="d" name="resposta"><br><br>
-
-        <label for="resposta5">e:</label>
-        <input type="text" id="e" name="resposta"><br><br>
-
-        <br><br><label for="resposta-correta">Resposta correta: </label>
-        <label for="resposta-a">a:</label>
-        <input type="radio" id="resposta-a" name="resposta-correta" value="a">
-
-        <label for="resposta-b">b:</label>
-        <input type="radio" id="resposta-b" name="resposta-correta" value="b">
-
-        <label for="resposta-c">c:</label>
-        <input type="radio" id="resposta-c" name="resposta-correta" value="c">
-
-        <label for="resposta-d">d:</label>
-        <input type="radio" id="resposta-d" name="resposta-correta" value="d">
-
-        <label for="resposta-e">e:</label>
-        <input type="radio" id="resposta-e" name="resposta-correta" value="e"><br><br>
-
-
-        <br><br><input type="submit" value="Criar pergunta">
-
-    </form>
+<div class="tasks-container tasks-register">    
+    <div class="tasks-description" style="margin: 50px 0px">
+        {{#if error}}
+			<div class='alert-danger'>{{error}}</div>
+		{{/if}}
+        <form class="form-control" action="register/cadastroPerguntas" method='POST'>
+            <div class="title-section" style="margin-bottom: 35px;">
+				<div style="display: flex; flex-direction: row; justify-content: left; gap: 20px">
+					<a class="go-back-btn" href="/tasks"><span class="material-symbols-outlined">arrow_back</span></span></a>
+					<h2 style="margin-top: 8px;">Cadastro de Perguntas</h2>
+				</div>				
+				<input type="submit" value="Criar" style="margin: auto 0px;">
+			</div>
+            <label>Crie a sua pergunta: </label>
+            <input type="text" id="cad-pergunta" name="cad-pergunt">
+            <br>
+            <label for="resposta1">Opção A:</label>
+            <input type="text" id="a" name="resposta">
+            <br>
+            <label for="resposta2">Opção B:</label>
+            <input type="text" id="b" name="resposta">
+            <br>
+            <label for="resposta3">Opção C:</label>
+            <input type="text" id="c" name="resposta">
+            <br>
+            <label for="resposta4">Opção D:</label>
+            <input type="text" id="d" name="resposta">
+            <br>
+            <label for="resposta5">Opção E:</label>
+            <input type="text" id="e" name="resposta">
+            <br>
+            <label for="resposta-correta">Selecione a resposta correta: </label>
+            <label for="resposta-a">a:
+                <input type="radio" id="resposta-a" name="resposta-correta" value="a">    
+            </label>
+            <label for="resposta-b">b:
+                <input type="radio" id="resposta-b" name="resposta-correta" value="b">
+            </label>
+            <label for="resposta-c">c:
+                <input type="radio" id="resposta-c" name="resposta-correta" value="c">
+            </label>            
+            <label for="resposta-d">d:
+                <input type="radio" id="resposta-d" name="resposta-correta" value="d">
+            </label>
+            <label for="resposta-e">e:
+                <input type="radio" id="resposta-e" name="resposta-correta" value="e"><br><br>
+            </label>
+        </form>
+    </div>
 </div>
