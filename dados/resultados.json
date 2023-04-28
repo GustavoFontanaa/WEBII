@@ -1,45 +1,51 @@
 {
-    "resultados":[
-        {
-            "avaliacao": "Teste",
-            "aluno":"Iasmim",
-            "num_perguntas":10,
-            "num_respostas_corretas":7,
-            "nota":7,
-            "feedback":"Parabéns! Você acertou a maioria das perguntas!"
-        },
-        {
-            "avaliacao": "Teste",
-            "aluno":"Iasmim",
-            "num_perguntas":10,
-            "num_respostas_corretas":7,
-            "nota":7,
-            "feedback":"Parabéns! Você acertou a maioria das perguntas!"
-        },
-        {
-            "avaliacao": "Teste",
-            "aluno":"Iasmim",
-            "num_perguntas":10,
-            "num_respostas_corretas":7,
-            "nota":7,
-            "feedback":"Parabéns! Você acertou a maioria das perguntas!"
-        },
-        {
-            "avaliacao": "Teste",
-            "aluno":"Iasmim",
-            "num_perguntas":10,
-            "num_respostas_corretas":7,
-            "nota":7,
-            "feedback":"Parabéns! Você acertou a maioria das perguntas!"
-        },
-        {
-            "avaliacao": "Teste",
-            "aluno":"Iasmim",
-            "num_perguntas":10,
-            "num_respostas_corretas":7,
-            "nota":7,
-            "feedback":"Parabéns! Você acertou a maioria das perguntas!"
-        }
-
-    ]
+  "resultados": [
+    {
+      "avaliacao": "Teste",
+      "aluno": "Iasmim",
+      "num_perguntas": 10,
+      "num_respostas_corretas": 7,
+      "nota": 7,
+      "feedback": "Parabéns! Você acertou a maioria das perguntas!"
+    },
+    {
+      "avaliacao": "Teste",
+      "aluno": "Iasmim",
+      "num_perguntas": 10,
+      "num_respostas_corretas": 7,
+      "nota": 7,
+      "feedback": "Parabéns! Você acertou a maioria das perguntas!"
+    },
+    {
+      "avaliacao": "Teste",
+      "aluno": "Iasmim",
+      "num_perguntas": 10,
+      "num_respostas_corretas": 7,
+      "nota": 7,
+      "feedback": "Parabéns! Você acertou a maioria das perguntas!"
+    },
+    {
+      "avaliacao": "Teste",
+      "aluno": "Iasmim",
+      "num_perguntas": 10,
+      "num_respostas_corretas": 7,
+      "nota": 7,
+      "feedback": "Parabéns! Você acertou a maioria das perguntas!"
+    },
+    {
+      "avaliacao": "Teste",
+      "aluno": "Iasmim",
+      "num_perguntas": 10,
+      "num_respostas_corretas": 7,
+      "nota": 7,
+      "feedback": "Parabéns! Você acertou a maioria das perguntas!"
+    },
+    {
+      "aluno": "Gustavo",
+      "nota": 6.67,
+      "num_perguntas": 3,
+      "num_respostas_corretas": 2,
+      "feedback": "Parabéns você foi acima da média!!"
+    }
+  ]
 }

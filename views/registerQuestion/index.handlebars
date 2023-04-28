@@ -1,0 +1,47 @@
+<div class="tasks-container tasks-register">
+    <div class="tasks-description" style="margin: 50px 0px">
+        {{#if error}}
+        <div class='alert-danger'>{{error}}</div>
+        {{/if}}
+        <form class="form-control" action="createQuestion" method='POST'>
+            <div class="title-section" style="margin-bottom: 35px;">
+                <div style="display: flex; flex-direction: row; justify-content: left; gap: 20px">
+                    <a class="go-back-btn" href="/tasks"><span
+                            class="material-symbols-outlined">arrow_back</span></span></a>
+                    <h2 style="margin-top: 8px;">Cadastro de Perguntas</h2>
+                </div>
+            </div>
+            <label>Crie a sua pergunta: </label>
+            <input type="text" id="pergunta" name="pergunta" placeholder="Digite o nome da tarefa" required />
+            <br>
+            <label for="resposta1">Opção A:</label>
+            <input type="text" id="a" name="a">
+            <br>
+            <label for="resposta2">Opção B:</label>
+            <input type="text" id="b" name="b">
+            <br>
+            <label for="resposta3">Opção C:</label>
+            <input type="text" id="c" name="c">
+            <br>
+            <label for="resposta4">Opção D:</label>
+            <input type="text" id="d" name="d">
+            <br>
+            <label for="resposta5">Opção E:</label>
+            <input type="text" id="e" name="e">
+            <br>
+            <label for="resposta-correta">Selecione a resposta correta: </label>
+            <select name="resposta_correta" required>
+                <option value="a">A</option>
+                <option value="b">B</option>
+                <option value="c">C</option>
+                <option value="d">D</option>
+                <option value="e">E</option>
+            </select>
+            <br><br>
+
+            <div style="display: flex; justify-content:end">
+                <input type="submit" value="Criar" style="width: min-content;">
+            </div>
+        </form>
+    </div>
+</div>
